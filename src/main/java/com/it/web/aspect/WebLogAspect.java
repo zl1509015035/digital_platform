@@ -25,7 +25,7 @@ public class WebLogAspect {
 
     private final Logger log = LoggerFactory.getLogger(WebLogAspect.class);
 
-    @Pointcut("execution(public * com.imooc.mall.controller.*.*(..)))")
+    @Pointcut("execution(public * com.it.web.controller.*.*(..)))")
     public void webLog() {
 
     }
