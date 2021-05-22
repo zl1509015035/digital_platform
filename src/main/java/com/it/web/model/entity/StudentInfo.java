@@ -1,6 +1,6 @@
 package com.it.web.model.entity;
 
-public class studentInfo {
+public class StudentInfo {
     private Integer sid;
 
     private String sname;

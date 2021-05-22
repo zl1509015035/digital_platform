@@ -86,7 +86,7 @@
 <!--      enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
 <!--      selectByExampleQueryId="false">-->
 <!--    </table>    -->
-    <table tableName="student_info" domainObjectName="studentInfo" enableCountByExample="false"
+    <table tableName="student_info" domainObjectName="StudentInfo" enableCountByExample="false"
       enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
       selectByExampleQueryId="false">
     </table>

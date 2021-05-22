@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.it.web.mapper.studentInfoMapper">
-  <resultMap id="BaseResultMap" type="com.it.web.model.entity.studentInfo">
+<mapper namespace="com.it.web.mapper.StudentInfoMapper">
+  <resultMap id="BaseResultMap" type="com.it.web.model.entity.StudentInfo">
     <id column="sid" jdbcType="INTEGER" property="sid" />
     <result column="sname" jdbcType="VARCHAR" property="sname" />
     <result column="sgender" jdbcType="VARCHAR" property="sgender" />
@@ -22,7 +22,7 @@
     delete from student_info
     where sid = #{sid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.it.web.model.entity.studentInfo">
+  <insert id="insert" parameterType="com.it.web.model.entity.StudentInfo">
     insert into student_info (sid, sname, sgender, 
       sage, saddress, semail
       )
@@ -30,7 +30,7 @@
       #{sage,jdbcType=INTEGER}, #{saddress,jdbcType=VARCHAR}, #{semail,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.it.web.model.entity.studentInfo">
+  <insert id="insertSelective" parameterType="com.it.web.model.entity.StudentInfo">
     insert into student_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sid != null">
@@ -73,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.it.web.model.entity.studentInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.it.web.model.entity.StudentInfo">
     update student_info
     <set>
       <if test="sname != null">
@@ -94,7 +94,7 @@
     </set>
     where sid = #{sid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.it.web.model.entity.studentInfo">
+  <update id="updateByPrimaryKey" parameterType="com.it.web.model.entity.StudentInfo">
     update student_info
     set sname = #{sname,jdbcType=VARCHAR},
       sgender = #{sgender,jdbcType=VARCHAR},
