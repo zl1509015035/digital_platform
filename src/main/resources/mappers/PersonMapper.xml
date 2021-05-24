@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.web.mapper.PersonMapper">
+  <resultMap id="BaseResultMap" type="com.it.web.model.entity.Person">
+    <id column="person_id" jdbcType="INTEGER" property="personId" />
+    <result column="person_picture" jdbcType="VARCHAR" property="personPicture" />
+    <result column="person_name" jdbcType="VARCHAR" property="personName" />
+    <result column="person_age" jdbcType="VARCHAR" property="personAge" />
+    <result column="person_birthday" jdbcType="VARCHAR" property="personBirthday" />
+    <result column="person_special" jdbcType="VARCHAR" property="personSpecial" />
+    <result column="person_education" jdbcType="VARCHAR" property="personEducation" />
+    <result column="person_political" jdbcType="VARCHAR" property="personPolitical" />
+    <result column="person_school" jdbcType="VARCHAR" property="personSchool" />
+    <result column="person_work_exp" jdbcType="VARCHAR" property="personWorkExp" />
+    <result column="person_learn_exp" jdbcType="VARCHAR" property="personLearnExp" />
+    <result column="person_language" jdbcType="VARCHAR" property="personLanguage" />
+    <result column="person_honor" jdbcType="VARCHAR" property="personHonor" />
+    <result column="person_introduce" jdbcType="VARCHAR" property="personIntroduce" />
+    <result column="person_type" jdbcType="VARCHAR" property="personType" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="verify_status" jdbcType="VARCHAR" property="verifyStatus" />
+    <result column="is_deleted" jdbcType="VARCHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    person_id, person_picture, person_name, person_age, person_birthday, person_special, 
+    person_education, person_political, person_school, person_work_exp, person_learn_exp, 
+    person_language, person_honor, person_introduce, person_type, create_time, user_id, 
+    verify_status, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_person
+    where person_id = #{personId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    update t_person set is_deleted = '1'
+    where person_id = #{personId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.it.web.model.entity.Person">
+    insert into t_person (person_id, person_picture, person_name, 
+      person_age, person_birthday, person_special, 
+      person_education, person_political, person_school, 
+      person_work_exp, person_learn_exp, person_language, 
+      person_honor, person_introduce, person_type, 
+      create_time, user_id, verify_status, 
+      is_deleted)
+    values (#{personId,jdbcType=INTEGER}, #{personPicture,jdbcType=VARCHAR}, #{personName,jdbcType=VARCHAR}, 
+      #{personAge,jdbcType=VARCHAR}, #{personBirthday,jdbcType=VARCHAR}, #{personSpecial,jdbcType=VARCHAR}, 
+      #{personEducation,jdbcType=VARCHAR}, #{personPolitical,jdbcType=VARCHAR}, #{personSchool,jdbcType=VARCHAR}, 
+      #{personWorkExp,jdbcType=VARCHAR}, #{personLearnExp,jdbcType=VARCHAR}, #{personLanguage,jdbcType=VARCHAR}, 
+      #{personHonor,jdbcType=VARCHAR}, #{personIntroduce,jdbcType=VARCHAR}, #{personType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{verifyStatus,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.it.web.model.entity.Person">
+    insert into t_person
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="personId != null">
+        person_id,
+      </if>
+      <if test="personPicture != null">
+        person_picture,
+      </if>
+      <if test="personName != null">
+        person_name,
+      </if>
+      <if test="personAge != null">
+        person_age,
+      </if>
+      <if test="personBirthday != null">
+        person_birthday,
+      </if>
+      <if test="personSpecial != null">
+        person_special,
+      </if>
+      <if test="personEducation != null">
+        person_education,
+      </if>
+      <if test="personPolitical != null">
+        person_political,
+      </if>
+      <if test="personSchool != null">
+        person_school,
+      </if>
+      <if test="personWorkExp != null">
+        person_work_exp,
+      </if>
+      <if test="personLearnExp != null">
+        person_learn_exp,
+      </if>
+      <if test="personLanguage != null">
+        person_language,
+      </if>
+      <if test="personHonor != null">
+        person_honor,
+      </if>
+      <if test="personIntroduce != null">
+        person_introduce,
+      </if>
+      <if test="personType != null">
+        person_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="verifyStatus != null">
+        verify_status,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="personId != null">
+        #{personId,jdbcType=INTEGER},
+      </if>
+      <if test="personPicture != null">
+        #{personPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null">
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="personAge != null">
+        #{personAge,jdbcType=VARCHAR},
+      </if>
+      <if test="personBirthday != null">
+        #{personBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="personSpecial != null">
+        #{personSpecial,jdbcType=VARCHAR},
+      </if>
+      <if test="personEducation != null">
+        #{personEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="personPolitical != null">
+        #{personPolitical,jdbcType=VARCHAR},
+      </if>
+      <if test="personSchool != null">
+        #{personSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="personWorkExp != null">
+        #{personWorkExp,jdbcType=VARCHAR},
+      </if>
+      <if test="personLearnExp != null">
+        #{personLearnExp,jdbcType=VARCHAR},
+      </if>
+      <if test="personLanguage != null">
+        #{personLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="personHonor != null">
+        #{personHonor,jdbcType=VARCHAR},
+      </if>
+      <if test="personIntroduce != null">
+        #{personIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="personType != null">
+        #{personType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="verifyStatus != null">
+        #{verifyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.it.web.model.entity.Person">
+    update t_person
+    <set>
+      <if test="personPicture != null">
+        person_picture = #{personPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null">
+        person_name = #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="personAge != null">
+        person_age = #{personAge,jdbcType=VARCHAR},
+      </if>
+      <if test="personBirthday != null">
+        person_birthday = #{personBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="personSpecial != null">
+        person_special = #{personSpecial,jdbcType=VARCHAR},
+      </if>
+      <if test="personEducation != null">
+        person_education = #{personEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="personPolitical != null">
+        person_political = #{personPolitical,jdbcType=VARCHAR},
+      </if>
+      <if test="personSchool != null">
+        person_school = #{personSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="personWorkExp != null">
+        person_work_exp = #{personWorkExp,jdbcType=VARCHAR},
+      </if>
+      <if test="personLearnExp != null">
+        person_learn_exp = #{personLearnExp,jdbcType=VARCHAR},
+      </if>
+      <if test="personLanguage != null">
+        person_language = #{personLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="personHonor != null">
+        person_honor = #{personHonor,jdbcType=VARCHAR},
+      </if>
+      <if test="personIntroduce != null">
+        person_introduce = #{personIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="personType != null">
+        person_type = #{personType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="verifyStatus != null">
+        verify_status = #{verifyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where person_id = #{personId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.it.web.model.entity.Person">
+    update t_person
+    set person_picture = #{personPicture,jdbcType=VARCHAR},
+      person_name = #{personName,jdbcType=VARCHAR},
+      person_age = #{personAge,jdbcType=VARCHAR},
+      person_birthday = #{personBirthday,jdbcType=VARCHAR},
+      person_special = #{personSpecial,jdbcType=VARCHAR},
+      person_education = #{personEducation,jdbcType=VARCHAR},
+      person_political = #{personPolitical,jdbcType=VARCHAR},
+      person_school = #{personSchool,jdbcType=VARCHAR},
+      person_work_exp = #{personWorkExp,jdbcType=VARCHAR},
+      person_learn_exp = #{personLearnExp,jdbcType=VARCHAR},
+      person_language = #{personLanguage,jdbcType=VARCHAR},
+      person_honor = #{personHonor,jdbcType=VARCHAR},
+      person_introduce = #{personIntroduce,jdbcType=VARCHAR},
+      person_type = #{personType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      verify_status = #{verifyStatus,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=VARCHAR}
+    where person_id = #{personId,jdbcType=INTEGER}
+  </update>
+</mapper>

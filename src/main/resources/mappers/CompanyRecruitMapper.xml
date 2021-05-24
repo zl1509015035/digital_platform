@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.web.mapper.CompanyRecruitMapper">
+  <resultMap id="BaseResultMap" type="com.it.web.model.entity.CompanyRecruit">
+    <id column="recruit_id" jdbcType="INTEGER" property="recruitId" />
+    <result column="recruit_quality" jdbcType="VARCHAR" property="recruitQuality" />
+    <result column="recruit_name" jdbcType="VARCHAR" property="recruitName" />
+    <result column="recruit_type" jdbcType="VARCHAR" property="recruitType" />
+    <result column="recruit_education_require" jdbcType="VARCHAR" property="recruitEducationRequire" />
+    <result column="recruit_work_experience" jdbcType="VARCHAR" property="recruitWorkExperience" />
+    <result column="recruit_salary_down" jdbcType="VARCHAR" property="recruitSalaryDown" />
+    <result column="recruit_salary_up" jdbcType="VARCHAR" property="recruitSalaryUp" />
+    <result column="recruit_duty" jdbcType="VARCHAR" property="recruitDuty" />
+    <result column="recruit_require" jdbcType="VARCHAR" property="recruitRequire" />
+    <result column="recruit_address" jdbcType="VARCHAR" property="recruitAddress" />
+    <result column="recruit_reporter" jdbcType="VARCHAR" property="recruitReporter" />
+    <result column="recruit_phone" jdbcType="VARCHAR" property="recruitPhone" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="is_deleted" jdbcType="VARCHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    recruit_id, recruit_quality, recruit_name, recruit_type, recruit_education_require, 
+    recruit_work_experience, recruit_salary_down, recruit_salary_up, recruit_duty, recruit_require, 
+    recruit_address, recruit_reporter, recruit_phone, company_id, create_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_company_recruit
+    where recruit_id = #{recruitId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    update t_company_recruit set is_deleted = '1'
+    where recruit_id = #{recruitId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.it.web.model.entity.CompanyRecruit">
+    insert into t_company_recruit (recruit_id, recruit_quality, recruit_name, 
+      recruit_type, recruit_education_require, recruit_work_experience, 
+      recruit_salary_down, recruit_salary_up, recruit_duty, 
+      recruit_require, recruit_address, recruit_reporter, 
+      recruit_phone, company_id, create_time, 
+      is_deleted)
+    values (#{recruitId,jdbcType=INTEGER}, #{recruitQuality,jdbcType=VARCHAR}, #{recruitName,jdbcType=VARCHAR}, 
+      #{recruitType,jdbcType=VARCHAR}, #{recruitEducationRequire,jdbcType=VARCHAR}, #{recruitWorkExperience,jdbcType=VARCHAR}, 
+      #{recruitSalaryDown,jdbcType=VARCHAR}, #{recruitSalaryUp,jdbcType=VARCHAR}, #{recruitDuty,jdbcType=VARCHAR}, 
+      #{recruitRequire,jdbcType=VARCHAR}, #{recruitAddress,jdbcType=VARCHAR}, #{recruitReporter,jdbcType=VARCHAR}, 
+      #{recruitPhone,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.it.web.model.entity.CompanyRecruit">
+    insert into t_company_recruit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recruitId != null">
+        recruit_id,
+      </if>
+      <if test="recruitQuality != null">
+        recruit_quality,
+      </if>
+      <if test="recruitName != null">
+        recruit_name,
+      </if>
+      <if test="recruitType != null">
+        recruit_type,
+      </if>
+      <if test="recruitEducationRequire != null">
+        recruit_education_require,
+      </if>
+      <if test="recruitWorkExperience != null">
+        recruit_work_experience,
+      </if>
+      <if test="recruitSalaryDown != null">
+        recruit_salary_down,
+      </if>
+      <if test="recruitSalaryUp != null">
+        recruit_salary_up,
+      </if>
+      <if test="recruitDuty != null">
+        recruit_duty,
+      </if>
+      <if test="recruitRequire != null">
+        recruit_require,
+      </if>
+      <if test="recruitAddress != null">
+        recruit_address,
+      </if>
+      <if test="recruitReporter != null">
+        recruit_reporter,
+      </if>
+      <if test="recruitPhone != null">
+        recruit_phone,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recruitId != null">
+        #{recruitId,jdbcType=INTEGER},
+      </if>
+      <if test="recruitQuality != null">
+        #{recruitQuality,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitName != null">
+        #{recruitName,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitType != null">
+        #{recruitType,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitEducationRequire != null">
+        #{recruitEducationRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitWorkExperience != null">
+        #{recruitWorkExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitSalaryDown != null">
+        #{recruitSalaryDown,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitSalaryUp != null">
+        #{recruitSalaryUp,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitDuty != null">
+        #{recruitDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitRequire != null">
+        #{recruitRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitAddress != null">
+        #{recruitAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitReporter != null">
+        #{recruitReporter,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitPhone != null">
+        #{recruitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.it.web.model.entity.CompanyRecruit">
+    update t_company_recruit
+    <set>
+      <if test="recruitQuality != null">
+        recruit_quality = #{recruitQuality,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitName != null">
+        recruit_name = #{recruitName,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitType != null">
+        recruit_type = #{recruitType,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitEducationRequire != null">
+        recruit_education_require = #{recruitEducationRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitWorkExperience != null">
+        recruit_work_experience = #{recruitWorkExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitSalaryDown != null">
+        recruit_salary_down = #{recruitSalaryDown,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitSalaryUp != null">
+        recruit_salary_up = #{recruitSalaryUp,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitDuty != null">
+        recruit_duty = #{recruitDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitRequire != null">
+        recruit_require = #{recruitRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitAddress != null">
+        recruit_address = #{recruitAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitReporter != null">
+        recruit_reporter = #{recruitReporter,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitPhone != null">
+        recruit_phone = #{recruitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where recruit_id = #{recruitId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.it.web.model.entity.CompanyRecruit">
+    update t_company_recruit
+    set recruit_quality = #{recruitQuality,jdbcType=VARCHAR},
+      recruit_name = #{recruitName,jdbcType=VARCHAR},
+      recruit_type = #{recruitType,jdbcType=VARCHAR},
+      recruit_education_require = #{recruitEducationRequire,jdbcType=VARCHAR},
+      recruit_work_experience = #{recruitWorkExperience,jdbcType=VARCHAR},
+      recruit_salary_down = #{recruitSalaryDown,jdbcType=VARCHAR},
+      recruit_salary_up = #{recruitSalaryUp,jdbcType=VARCHAR},
+      recruit_duty = #{recruitDuty,jdbcType=VARCHAR},
+      recruit_require = #{recruitRequire,jdbcType=VARCHAR},
+      recruit_address = #{recruitAddress,jdbcType=VARCHAR},
+      recruit_reporter = #{recruitReporter,jdbcType=VARCHAR},
+      recruit_phone = #{recruitPhone,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=VARCHAR}
+    where recruit_id = #{recruitId,jdbcType=INTEGER}
+  </update>
+</mapper>

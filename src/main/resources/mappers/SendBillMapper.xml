@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.web.mapper.SendBillMapper">
+  <resultMap id="BaseResultMap" type="com.it.web.model.entity.SendBill">
+    <id column="bill_id" jdbcType="INTEGER" property="billId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="recruit_id" jdbcType="INTEGER" property="recruitId" />
+    <result column="recruit_name" jdbcType="VARCHAR" property="recruitName" />
+    <result column="recruit_type" jdbcType="VARCHAR" property="recruitType" />
+    <result column="verify_status" jdbcType="VARCHAR" property="verifyStatus" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="is_deleted" jdbcType="VARCHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bill_id, user_id, company_id, recruit_id, recruit_name, recruit_type, verify_status, 
+    create_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_send_bill
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    update t_send_bill set is_deleted = '1'
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.it.web.model.entity.SendBill">
+    insert into t_send_bill (bill_id, user_id, company_id, 
+      recruit_id, recruit_name, recruit_type, 
+      verify_status, create_time, is_deleted
+      )
+    values (#{billId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, 
+      #{recruitId,jdbcType=INTEGER}, #{recruitName,jdbcType=VARCHAR}, #{recruitType,jdbcType=VARCHAR}, 
+      #{verifyStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{isDeleted,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.it.web.model.entity.SendBill">
+    insert into t_send_bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billId != null">
+        bill_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="recruitId != null">
+        recruit_id,
+      </if>
+      <if test="recruitName != null">
+        recruit_name,
+      </if>
+      <if test="recruitType != null">
+        recruit_type,
+      </if>
+      <if test="verifyStatus != null">
+        verify_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billId != null">
+        #{billId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="recruitId != null">
+        #{recruitId,jdbcType=INTEGER},
+      </if>
+      <if test="recruitName != null">
+        #{recruitName,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitType != null">
+        #{recruitType,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyStatus != null">
+        #{verifyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.it.web.model.entity.SendBill">
+    update t_send_bill
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="recruitId != null">
+        recruit_id = #{recruitId,jdbcType=INTEGER},
+      </if>
+      <if test="recruitName != null">
+        recruit_name = #{recruitName,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitType != null">
+        recruit_type = #{recruitType,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyStatus != null">
+        verify_status = #{verifyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.it.web.model.entity.SendBill">
+    update t_send_bill
+    set user_id = #{userId,jdbcType=INTEGER},
+      company_id = #{companyId,jdbcType=INTEGER},
+      recruit_id = #{recruitId,jdbcType=INTEGER},
+      recruit_name = #{recruitName,jdbcType=VARCHAR},
+      recruit_type = #{recruitType,jdbcType=VARCHAR},
+      verify_status = #{verifyStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=VARCHAR}
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </update>
+</mapper>

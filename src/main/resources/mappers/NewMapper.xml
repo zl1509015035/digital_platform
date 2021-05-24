@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.web.mapper.NewMapper">
+  <resultMap id="BaseResultMap" type="com.it.web.model.entity.New">
+    <id column="new_id" jdbcType="INTEGER" property="newId" />
+    <result column="new_type" jdbcType="VARCHAR" property="newType" />
+    <result column="new_content" jdbcType="VARCHAR" property="newContent" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="is_deleted" jdbcType="VARCHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    new_id, new_type, new_content, create_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_new
+    where new_id = #{newId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    update t_new set is_deleted = '1'
+    where new_id = #{newId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.it.web.model.entity.New">
+    insert into t_new (new_id, new_type, new_content, 
+      create_time, is_deleted)
+    values (#{newId,jdbcType=INTEGER}, #{newType,jdbcType=VARCHAR}, #{newContent,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{isDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.it.web.model.entity.New">
+    insert into t_new
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newId != null">
+        new_id,
+      </if>
+      <if test="newType != null">
+        new_type,
+      </if>
+      <if test="newContent != null">
+        new_content,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="newId != null">
+        #{newId,jdbcType=INTEGER},
+      </if>
+      <if test="newType != null">
+        #{newType,jdbcType=VARCHAR},
+      </if>
+      <if test="newContent != null">
+        #{newContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.it.web.model.entity.New">
+    update t_new
+    <set>
+      <if test="newType != null">
+        new_type = #{newType,jdbcType=VARCHAR},
+      </if>
+      <if test="newContent != null">
+        new_content = #{newContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where new_id = #{newId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.it.web.model.entity.New">
+    update t_new
+    set new_type = #{newType,jdbcType=VARCHAR},
+      new_content = #{newContent,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=VARCHAR}
+    where new_id = #{newId,jdbcType=INTEGER}
+  </update>
+</mapper>
