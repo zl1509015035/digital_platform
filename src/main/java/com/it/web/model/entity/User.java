@@ -5,6 +5,8 @@ public class User {
 
     private String userName;
 
+    private String userPassword;
+
     private String userAuthority;
 
     private String isDeleted;
@@ -25,6 +27,14 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName == null ? null : userName.trim();
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public String getUserAuthority() {

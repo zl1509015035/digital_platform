@@ -16,6 +16,8 @@ public class Constant {
     public static final String IMOOC_MALL_USER = "imooc_mall_user";
     public static final String SALT = "1qaz@WSX";
 
+    public static final String NOT_DELETED = "0";
+
     public static String FILE_UPLOAD_DIR;
 
     @Value("${file.upload.dir}")

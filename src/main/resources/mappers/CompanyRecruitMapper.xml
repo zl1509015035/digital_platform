@@ -28,7 +28,7 @@
     select 
     <include refid="Base_Column_List" />
     from t_company_recruit
-    where recruit_id = #{recruitId,jdbcType=INTEGER}
+    where is_deleted = '0' and recruit_id = #{recruitId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     update t_company_recruit set is_deleted = '1'
