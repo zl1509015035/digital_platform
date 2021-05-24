@@ -12,7 +12,7 @@
     new_id, new_type, new_content, create_time, is_deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_new
     where is_deleted = '0' and new_id = #{newId,jdbcType=INTEGER}
@@ -90,4 +90,23 @@
       is_deleted = #{isDeleted,jdbcType=VARCHAR}
     where new_id = #{newId,jdbcType=INTEGER}
   </update>
+  <select id="getNewsInfo" parameterType="com.it.web.model.req.NewReq" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    t_new
+    <where>
+     is_deleted = '0'
+     <if test="newType != null">
+     and new_type = #{newType,jdbcType=VARCHAR}
+     </if>
+     <if  test="newContent !=null">
+     and new_content = #{newContent,jdbcType=VARCHAR}
+     </if>
+     <if test="startTime != null and endTime !=null ">
+     and create_time BETWEEN #{startTime,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}
+     </if>
+     </where>
+
+  </select>
 </mapper>
