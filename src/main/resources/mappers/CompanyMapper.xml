@@ -17,11 +17,29 @@
     company_id, company_name, company_address, company_focusing, company_time, campany_money, 
     company_trade, user_id, create_time, is_deleted
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.it.web.model.req.CompanyReq" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from t_company
-    where is_deleted = '0' and company_id = #{companyId,jdbcType=INTEGER}
+    <where>
+      is_deleted = '0'
+       <if test="companyId != null">
+       and company_id = #{companyId,jdbcType=INTEGER}
+       </if>
+       <if test="companyName != null">
+       and company_name like concat('%',#{companyName,jdbcType=VARCHAR},'%')
+       </if>
+       <if test="companyTrade != null">
+       and company_trade = #{companyTrade,jdbcType=VARCHAR}
+       </if>
+       <if test="companyFocusing != null">
+       and company_focusing = #{companyFocusing,jdbcType=VARCHAR}
+       </if>
+      <if test="startTime != null and endTime !=null ">
+       and create_time BETWEEN #{startTime,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by create_time desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     update t_company set is_deleted = '1'

@@ -107,6 +107,6 @@
      and create_time BETWEEN #{startTime,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}
      </if>
      </where>
-
+     order by create_time desc
   </select>
 </mapper>

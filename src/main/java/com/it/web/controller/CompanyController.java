@@ -1,7 +1,9 @@
 package com.it.web.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.it.web.common.ApiRestResponse;
 import com.it.web.model.entity.Company;
+import com.it.web.model.req.CompanyReq;
 import com.it.web.service.CompanyService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +23,24 @@ public class CompanyController {
     @PostMapping("insertCompanyInfo")
     public ApiRestResponse insertCompanyInfo(@RequestBody Company company){
         return companyService.insertCompanyInfo(company);
+    }
+
+    @ApiOperation("查询企业信息")
+    @PostMapping("getCompanyInfo")
+    public PageInfo getCompanyInfo(CompanyReq companyReq){
+        PageInfo pageInfo = companyService.getCompanyInfo(companyReq);
+        return pageInfo;
+    }
+
+    @ApiOperation("修改企业信息")
+    @PostMapping("update")
+    public void update(Company company){
+        companyService.update(company);
+    }
+
+    @ApiOperation("删除企业信息")
+    @PostMapping("delete")
+    public void delete(Company company){
+        companyService.delete(company);
     }
 }

@@ -18,8 +18,8 @@ public class NewReq{
 
     private String endTime;
 
-    private Integer pageNum;
-    private Integer pageSize;
+    private Integer pageNum = 1;
+    private Integer pageSize = 10;
 
     public Integer getNewId() {
         return newId;

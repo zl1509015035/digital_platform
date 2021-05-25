@@ -1,6 +1,9 @@
 package com.it.web.mapper;
 
 import com.it.web.model.entity.Company;
+import com.it.web.model.req.CompanyReq;
+
+import java.util.List;
 
 public interface CompanyMapper {
     int deleteByPrimaryKey(Integer companyId);
@@ -9,7 +12,7 @@ public interface CompanyMapper {
 
     int insertSelective(Company record);
 
-    Company selectByPrimaryKey(Integer companyId);
+    List<Company> selectByPrimaryKey(CompanyReq companyReq);
 
     int updateByPrimaryKeySelective(Company record);
 
