@@ -27,20 +27,20 @@ public class CompanyController {
 
     @ApiOperation("查询企业信息")
     @PostMapping("getCompanyInfo")
-    public PageInfo getCompanyInfo(CompanyReq companyReq){
+    public PageInfo getCompanyInfo(@RequestBody CompanyReq companyReq){
         PageInfo pageInfo = companyService.getCompanyInfo(companyReq);
         return pageInfo;
     }
 
     @ApiOperation("修改企业信息")
     @PostMapping("update")
-    public void update(Company company){
+    public void update(@RequestBody Company company){
         companyService.update(company);
     }
 
     @ApiOperation("删除企业信息")
     @PostMapping("delete")
-    public void delete(Company company){
+    public void delete(@RequestBody Company company){
         companyService.delete(company);
     }
 }
