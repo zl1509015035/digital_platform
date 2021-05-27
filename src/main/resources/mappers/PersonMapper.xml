@@ -37,9 +37,11 @@
   <select id="getPersons" parameterType="com.it.web.model.req.PersonReq" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"></include>
+    from
+    t_person
     <where>
     <if test="isDeleted != null">
-      is_deleted = #{isDeleted,jdbcType=VARCHAR}
+      is_deleted = #{isDeleted}
     </if>
       <if test="personId != null">
       and  person_id = #{personId}

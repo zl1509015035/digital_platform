@@ -4,9 +4,10 @@ import com.github.pagehelper.PageInfo;
 import com.it.web.common.ApiRestResponse;
 import com.it.web.model.entity.Person;
 import com.it.web.model.req.PersonReq;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface PersonService {
-    ApiRestResponse insertPersonInfo(Person person);
+    ApiRestResponse insertPersonInfo(MultipartFile file,Person person);
 
     PageInfo getPersons(PersonReq personReq);
 

@@ -1,5 +1,6 @@
 package com.it.web.model.req;
 
+import com.it.web.common.Constant;
 import lombok.Data;
 
 @Data
@@ -12,7 +13,7 @@ public class NewReq{
 
     private String createTime;
 
-    private String isDeleted;
+    private String isDeleted = Constant.NOT_DELETED;
 
     private String startTime;
 
@@ -20,6 +21,7 @@ public class NewReq{
 
     private Integer pageNum = 1;
     private Integer pageSize = 10;
+
 
     public Integer getNewId() {
         return newId;

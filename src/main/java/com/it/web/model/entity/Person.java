@@ -1,5 +1,7 @@
 package com.it.web.model.entity;
 
+import com.it.web.common.Constant;
+
 public class Person {
     private Integer personId;
 
@@ -37,7 +39,7 @@ public class Person {
 
     private String verifyStatus;
 
-    private String isDeleted;
+    private String isDeleted = Constant.NOT_DELETED;
 
     public Integer getPersonId() {
         return personId;

@@ -37,14 +37,14 @@ public class NewController {
         return ApiRestResponse.success(pageInfo);
     }
 
-    @ApiOperation("修改用户信息")
+    @ApiOperation("修改新闻信息")
     @PostMapping("update")
     public ApiRestResponse update(@RequestBody New n){
         newService.update(n);
         return ApiRestResponse.success("修改成功");
     }
 
-    @ApiOperation("删除用户信息")
+    @ApiOperation("删除新闻信息")
     @PostMapping("delete")
     public ApiRestResponse delete(@RequestBody New n){
         newService.delete(n);

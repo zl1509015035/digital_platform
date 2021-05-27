@@ -22,27 +22,27 @@ public class SendBillController {
     @Autowired
     SendBillService sendBillService;
 
-    @ApiOperation("添加企业信息")
+    @ApiOperation("添加招聘流水信息")
     @PostMapping("insertBillInfo")
     public ApiRestResponse insertBillInfo(@RequestBody SendBill sendBill){
         return sendBillService.insertBillInfo(sendBill);
     }
 
-    @ApiOperation("查询新闻信息")
+    @ApiOperation("查询招聘流水信息")
     @PostMapping("getSendBills")
     public ApiRestResponse getSendBills(@RequestBody SendBillReq sendBillReq){
         PageInfo pageInfo = sendBillService.getSendBills(sendBillReq);
         return ApiRestResponse.success(pageInfo);
     }
 
-    @ApiOperation("修改用户信息")
+    @ApiOperation("修改招聘流水信息")
     @PostMapping("update")
     public ApiRestResponse update(@RequestBody SendBill sendBill){
         sendBillService.update(sendBill);
         return ApiRestResponse.success("修改成功");
     }
 
-    @ApiOperation("删除用户信息")
+    @ApiOperation("删除招聘流水信息")
     @PostMapping("delete")
     public ApiRestResponse delete(@RequestBody SendBill sendBill){
         sendBillService.delete(sendBill);

@@ -15,7 +15,12 @@
     select
     <include refid="Base_Column_List" />
     from t_new
-    where is_deleted = '0' and new_id = #{newId,jdbcType=INTEGER}
+    <where>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted}
+      </if>
+      and new_id = #{newId,jdbcType=INTEGER}
+    </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     update t_new set is_deleted = '1'
@@ -96,7 +101,9 @@
     from
     t_new
     <where>
-     is_deleted = '0'
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted}
+      </if>
      <if test="newType != null">
      and new_type = #{newType,jdbcType=VARCHAR}
      </if>

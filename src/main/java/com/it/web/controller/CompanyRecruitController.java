@@ -21,27 +21,27 @@ public class CompanyRecruitController {
     @Autowired
     CompanyRecruitService companyRecruitService;
 
-    @ApiOperation("添加企业信息")
+    @ApiOperation("添加企业招聘信息")
     @PostMapping("insertCompanyRecruitInfo")
     public ApiRestResponse insertCompanyRecruitInfo(@RequestBody CompanyRecruit companyRecruit){
         return companyRecruitService.insertCompanyRecruitInfo(companyRecruit);
     }
 
-    @ApiOperation("查询新闻信息")
+    @ApiOperation("查询企业招聘信息")
     @PostMapping("getCompanyRecruits")
     public ApiRestResponse getCompanyRecruits(@RequestBody CompanyRecruitReq companyRecruitReq){
         PageInfo pageInfo = companyRecruitService.getCompanyRecruits(companyRecruitReq);
         return ApiRestResponse.success(pageInfo);
     }
 
-    @ApiOperation("修改用户信息")
+    @ApiOperation("修改企业招聘信息")
     @PostMapping("update")
     public ApiRestResponse update(@RequestBody CompanyRecruit companyRecruit){
         companyRecruitService.update(companyRecruit);
         return ApiRestResponse.success("修改成功");
     }
 
-    @ApiOperation("删除用户信息")
+    @ApiOperation("删除企业招聘信息")
     @PostMapping("delete")
     public ApiRestResponse delete(@RequestBody CompanyRecruit companyRecruit){
         companyRecruitService.delete(companyRecruit);
