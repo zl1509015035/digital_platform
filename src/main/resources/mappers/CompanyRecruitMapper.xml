@@ -30,7 +30,56 @@
     from t_company_recruit
     where is_deleted = '0' and recruit_id = #{recruitId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="getCompanyRecruits" parameterType="com.it.web.model.req.CompanyRecruitReq" resultType="com.it.web.model.entity.CompanyRecruit">
+      select
+      <include refid="Base_Column_List" />
+      from t_company_recruit
+      <where>
+        <if test="isDeleted != null">
+          is_deleted = #{isDeleted,jdbcType=VARCHAR}
+        </if>
+        <if test="recruitId != null">
+         and recruit_id = #{recruitId}
+        </if>
+        <if test="recruitQuality != null">
+          and recruit_quality = #{recruitQuality}
+        </if>
+        <if test="recruitName != null">
+          and recruit_name = concat(#{recruitName},'%')
+        </if>
+        <if test="recruitType != null">
+          and recruit_type =#{recruitType}
+        </if>
+        <if test="recruitEducationRequire != null">
+          and recruit_education_require = concat(#{recruitEducationRequire},'%')
+        </if>
+        <if test="recruitWorkExperience != null">
+          and recruit_work_experience = #{recruitWorkExperience}
+        </if>
+        <if test="recruitDuty != null">
+          and  recruit_duty = #{recruitDuty}
+        </if>
+        <if test="recruitRequire != null">
+          and recruit_require = #{recruitRequire}
+        </if>
+        <if test="recruitAddress != null">
+          and recruit_address = (#{recruitAddress},'%')
+        </if>
+        <if test="recruitReporter != null">
+          and recruit_reporter = #{recruitReporter}
+        </if>
+        <if test="recruitPhone != null">
+          and recruit_phone = #{recruitPhone}
+        </if>
+        <if test="companyId != null">
+          and company_id = #{companyId}
+        </if>
+        <if test="startTime != null and endTime !=null ">
+          and create_time BETWEEN #{startTime,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}
+        </if>
+      </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     update t_company_recruit set is_deleted = '1'
     where recruit_id = #{recruitId,jdbcType=INTEGER}
   </delete>

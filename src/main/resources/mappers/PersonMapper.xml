@@ -34,6 +34,69 @@
     from t_person
     where is_deleted = '0' and person_id = #{personId,jdbcType=INTEGER}
   </select>
+  <select id="getPersons" parameterType="com.it.web.model.req.PersonReq" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    <where>
+    <if test="isDeleted != null">
+      is_deleted = #{isDeleted,jdbcType=VARCHAR}
+    </if>
+      <if test="personId != null">
+      and  person_id = #{personId}
+      </if>
+      <if test="personPicture != null">
+        and person_picture = #{personPicture}
+      </if>
+      <if test="personName != null">
+        and person_name =#{personName}
+      </if>
+      <if test="personAge != null">
+        and person_age=#{personAge}
+      </if>
+      <if test="personBirthday != null">
+        and person_birthday=#{personBirthday}
+      </if>
+      <if test="personSpecial != null">
+        and person_special=#{personSpecial}
+      </if>
+      <if test="personEducation != null">
+        and person_education=#{personEducation}
+      </if>
+      <if test="personPolitical != null">
+        and person_political=#{personPolitical}
+      </if>
+      <if test="personSchool != null">
+        and person_school=#{personSchool}
+      </if>
+      <if test="personWorkExp != null">
+        and person_work_exp=#{personWorkExp}
+      </if>
+      <if test="personLearnExp != null">
+        and person_learn_exp=#{personLearnExp}
+      </if>
+      <if test="personLanguage != null">
+        and person_language=#{personLanguage}
+      </if>
+      <if test="personHonor != null">
+        and person_honor=#{personHonor}
+      </if>
+      <if test="personIntroduce != null">
+        and person_introduce = #{personIntroduce}
+      </if>
+      <if test="personType != null">
+        and person_type = #{personType}
+      </if>
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="verifyStatus != null">
+        and verify_status=#{verifyStatus}
+      </if>
+      <if test="startTime != null and endTime !=null ">
+        and create_time BETWEEN #{startTime,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     update t_person set is_deleted = '1'
     where person_id = #{personId,jdbcType=INTEGER}

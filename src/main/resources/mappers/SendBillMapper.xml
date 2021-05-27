@@ -22,6 +22,38 @@
     from t_send_bill
     where is_deleted = '0' and bill_id = #{billId,jdbcType=INTEGER}
   </select>
+  <select id="getSendBills" resultType="com.it.web.model.entity.SendBill" parameterType="com.it.web.model.req.SendBillReq">
+    select
+    <include refid="Base_Column_List" />
+    from t_send_bill
+    <where>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null">
+      and user_id = #{userId}
+      </if>
+      <if test="companyId != null">
+      and company_id = #{companyId}
+      </if>
+      <if test="recruitId != null">
+        and recruit_id =#{recruitId}
+      </if>
+      <if test="recruitName != null">
+        and recruit_name = #{recruitName}
+      </if>
+      <if test="recruitType != null">
+        and recruit_type = #{recruitType}
+      </if>
+      <if test="verifyStatus != null">
+        and verify_status = #{verifyStatus}
+      </if>
+      <if test="startTime != null and endTime !=null ">
+        and create_time BETWEEN #{startTime,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     update t_send_bill set is_deleted = '1'
     where bill_id = #{billId,jdbcType=INTEGER}
