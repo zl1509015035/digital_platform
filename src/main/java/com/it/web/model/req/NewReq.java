@@ -7,6 +7,8 @@ import lombok.Data;
 public class NewReq{
     private Integer newId;
 
+    private String newTitle;
+
     private String newType;
 
     private String newContent;

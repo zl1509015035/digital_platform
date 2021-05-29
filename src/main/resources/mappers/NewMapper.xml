@@ -3,13 +3,14 @@
 <mapper namespace="com.it.web.mapper.NewMapper">
   <resultMap id="BaseResultMap" type="com.it.web.model.entity.New">
     <id column="new_id" jdbcType="INTEGER" property="newId" />
+    <result column="new_title" jdbcType="VARCHAR" property="newTitle" />
     <result column="new_type" jdbcType="VARCHAR" property="newType" />
     <result column="new_content" jdbcType="VARCHAR" property="newContent" />
     <result column="create_time" jdbcType="VARCHAR" property="createTime" />
     <result column="is_deleted" jdbcType="VARCHAR" property="isDeleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    new_id, new_type, new_content, create_time, is_deleted
+    new_id, new_title, new_type, new_content, create_time, is_deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -103,6 +104,12 @@
     <where>
       <if test="isDeleted != null">
         is_deleted = #{isDeleted}
+      </if>
+      <if test="newId != null">
+        and new_id = #{newId,jdbcType=INTEGER}
+      </if>
+      <if test="newTitle != null">
+        and new_title concac(#{newTitle,jdbcType=VARCHAR},'%')
       </if>
      <if test="newType != null">
      and new_type = #{newType,jdbcType=VARCHAR}
