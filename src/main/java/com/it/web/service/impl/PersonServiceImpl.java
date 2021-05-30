@@ -33,7 +33,7 @@ public class PersonServiceImpl implements PersonService {
         boolean upload = FileUtils.upload(file, path, fileName);
 
         if (true == upload) {
-            person.setPersonPicture(path + "/" + fileName);
+            person.setPersonPicture(path + fileName);
         }
 
         personMapper.insertSelective(person);
@@ -57,8 +57,6 @@ public class PersonServiceImpl implements PersonService {
     public void delete(Person person) {
         personMapper.deleteByPrimaryKey(person.getPersonId());
     }
-
-
 
 
 }
