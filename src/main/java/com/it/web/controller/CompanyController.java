@@ -20,26 +20,26 @@ public class CompanyController {
     CompanyService companyService;
 
     @ApiOperation("添加企业信息")
-    @PostMapping("insertCompanyInfo")
+    @PostMapping("/insertCompanyInfo")
     public ApiRestResponse insertCompanyInfo(@RequestBody Company company){
         return companyService.insertCompanyInfo(company);
     }
 
     @ApiOperation("查询企业信息")
-    @PostMapping("getCompanyInfo")
+    @PostMapping("/getCompanyInfo")
     public PageInfo getCompanyInfo(@RequestBody CompanyReq companyReq){
         PageInfo pageInfo = companyService.getCompanyInfo(companyReq);
         return pageInfo;
     }
 
     @ApiOperation("修改企业信息")
-    @PostMapping("update")
+    @PostMapping("/update")
     public void update(@RequestBody Company company){
         companyService.update(company);
     }
 
     @ApiOperation("删除企业信息")
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public void delete(@RequestBody Company company){
         companyService.delete(company);
     }

@@ -30,7 +30,7 @@
     from t_company_recruit
     where is_deleted = '0' and recruit_id = #{recruitId,jdbcType=INTEGER}
   </select>
-    <select id="getCompanyRecruits" parameterType="com.it.web.model.req.CompanyRecruitReq" resultType="com.it.web.model.entity.CompanyRecruit">
+    <select id="getCompanyRecruits" parameterType="com.it.web.model.req.CompanyRecruitReq" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List" />
       from t_company_recruit
