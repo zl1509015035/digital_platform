@@ -1,7 +1,12 @@
 package com.it.web.model.entity;
 
+import lombok.Data;
+
+@Data
 public class New {
     private Integer newId;
+
+    private String newTitle;
 
     private String newType;
 
