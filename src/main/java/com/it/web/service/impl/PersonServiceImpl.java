@@ -35,7 +35,7 @@ public class PersonServiceImpl implements PersonService {
         if (true == upload) {
 //            person.setPersonPicture(path + "/" + fileName);
             //正式
-            person.setPersonPicture("http://8.140.159.85/"+path + "/" + fileName);
+            person.setPersonPicture("http://8.140.159.85"+path + "/" + fileName);
         }
 
         personMapper.insertSelective(person);
