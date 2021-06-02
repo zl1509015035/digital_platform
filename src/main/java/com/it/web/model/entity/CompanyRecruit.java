@@ -1,37 +1,54 @@
 package com.it.web.model.entity;
 
+import com.it.web.common.Constant;
+import io.swagger.annotations.ApiModelProperty;
+
 public class CompanyRecruit {
+    @ApiModelProperty("职位编号")
     private Integer recruitId;
 
+    @ApiModelProperty("职位性质 0-全职 1-兼职 2-实习")
     private String recruitQuality;
 
+    @ApiModelProperty("职位名称")
     private String recruitName;
 
+    @ApiModelProperty("职位类别")
     private String recruitType;
 
+    @ApiModelProperty("职位学历要求")
     private String recruitEducationRequire;
 
+    @ApiModelProperty("职位工作经验")
     private String recruitWorkExperience;
 
+    @ApiModelProperty("职位薪资下限")
     private String recruitSalaryDown;
 
+    @ApiModelProperty("职位薪资上限")
     private String recruitSalaryUp;
 
+    @ApiModelProperty("职位岗位职责")
     private String recruitDuty;
 
+    @ApiModelProperty("职位任职要求")
     private String recruitRequire;
 
+    @ApiModelProperty("职位工作地址")
     private String recruitAddress;
 
+    @ApiModelProperty("职位联系人")
     private String recruitReporter;
 
+    @ApiModelProperty("职位联系人电话")
     private String recruitPhone;
 
+    @ApiModelProperty("企业编号")
     private Integer companyId;
 
     private String createTime;
 
-    private String isDeleted;
+    private String isDeleted = Constant.NOT_DELETED;
 
     public Integer getRecruitId() {
         return recruitId;

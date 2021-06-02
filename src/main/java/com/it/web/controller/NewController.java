@@ -24,28 +24,28 @@ public class NewController {
     NewService newService;
 
     @ApiOperation("新增新闻信息")
-    @PostMapping("insertNews")
+    @PostMapping("/insertNews")
     public ApiRestResponse insertNews(@RequestBody New n){
         newService.insertNewInfo(n);
         return ApiRestResponse.success("新增成功");
     }
 
     @ApiOperation("查询新闻信息")
-    @PostMapping("getNews")
+    @PostMapping("/getNews")
     public ApiRestResponse getNews(@RequestBody NewReq newReq){
         PageInfo pageInfo = newService.getNews(newReq);
         return ApiRestResponse.success(pageInfo);
     }
 
     @ApiOperation("修改新闻信息")
-    @PostMapping("update")
+    @PostMapping("/update")
     public ApiRestResponse update(@RequestBody New n){
         newService.update(n);
         return ApiRestResponse.success("修改成功");
     }
 
     @ApiOperation("删除新闻信息")
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public ApiRestResponse delete(@RequestBody New n){
         newService.delete(n);
         return ApiRestResponse.success("删除成功");

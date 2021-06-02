@@ -20,14 +20,14 @@ public class UserController {
     UserService userService;
 
     @ApiOperation("注册用户信息")
-    @PostMapping("register")
+    @PostMapping("/register")
     public ApiRestResponse register(@RequestBody User user){
         userService.insertUserInfo(user);
         return ApiRestResponse.success("注册成功");
     }
 
     @ApiOperation("登录")
-    @PostMapping("login")
+    @PostMapping("/login")
     public ApiRestResponse login(@RequestBody UserGisterReq req){
         User user = new User();
         user.setUserName(req.getUserName());
@@ -40,14 +40,14 @@ public class UserController {
     }
 
     @ApiOperation("修改用户信息")
-    @PostMapping("update")
+    @PostMapping("/update")
     public ApiRestResponse update(@RequestBody User user){
         userService.update(user);
         return ApiRestResponse.success("修改成功");
     }
 
     @ApiOperation("删除用户信息")
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public ApiRestResponse delete(@RequestBody User user){
         userService.delete(user);
         return ApiRestResponse.success("删除成功");

@@ -21,28 +21,28 @@ public class PersonController {
     PersonService personService;
 
     @ApiOperation("添加人才信息")
-    @PostMapping("insertPersonInfo")
+    @PostMapping("/insertPersonInfo")
     public ApiRestResponse insertPersonInfo(MultipartFile file, Person person){
         personService.insertPersonInfo(file,person);
         return ApiRestResponse.success("添加人才信息成功");
     }
 
     @ApiOperation("查询人才信息")
-    @PostMapping("getPersons")
+    @PostMapping("/getPersons")
     public ApiRestResponse getPersons(@RequestBody PersonReq personReq){
         PageInfo pageInfo = personService.getPersons(personReq);
         return ApiRestResponse.success(pageInfo);
     }
 
     @ApiOperation("修改人才信息")
-    @PostMapping("update")
+    @PostMapping("/update")
     public ApiRestResponse update(@RequestBody Person person){
         personService.update(person);
         return ApiRestResponse.success("修改成功");
     }
 
     @ApiOperation("删除人才信息")
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public ApiRestResponse delete(@RequestBody Person person){
         personService.delete(person);
         return ApiRestResponse.success("删除成功");

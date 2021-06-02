@@ -28,9 +28,9 @@
     where new_id = #{newId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.it.web.model.entity.New">
-    insert into t_new (new_id, new_type, new_content, 
+    insert into t_new (new_id, new_title, new_type, new_content,
       create_time, is_deleted)
-    values (#{newId,jdbcType=INTEGER}, #{newType,jdbcType=VARCHAR}, #{newContent,jdbcType=VARCHAR}, 
+    values (#{newId,jdbcType=INTEGER}, #{newTitle,jdbcType=VARCHAR}, #{newType,jdbcType=VARCHAR}, #{newContent,jdbcType=VARCHAR},
       #{createTime,jdbcType=VARCHAR}, #{isDeleted,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.it.web.model.entity.New">
@@ -38,6 +38,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="newId != null">
         new_id,
+      </if>
+      <if test="newTitle != null">
+        new_title,
       </if>
       <if test="newType != null">
         new_type,
@@ -56,7 +59,10 @@
       <if test="newId != null">
         #{newId,jdbcType=INTEGER},
       </if>
-      <if test="newType != null">
+      <if test="newTitle != null">
+        #{newTitle,jdbcType=VARCHAR},
+      </if>
+        <if test="newType != null">
         #{newType,jdbcType=VARCHAR},
       </if>
       <if test="newContent != null">
@@ -73,7 +79,10 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.it.web.model.entity.New">
     update t_new
     <set>
-      <if test="newType != null">
+      <if test="newTitle != null">
+        new_title = #{newTitle,jdbcType=VARCHAR},
+      </if>
+        <if test="newType != null">
         new_type = #{newType,jdbcType=VARCHAR},
       </if>
       <if test="newContent != null">
@@ -90,7 +99,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.it.web.model.entity.New">
     update t_new
-    set new_type = #{newType,jdbcType=VARCHAR},
+    set new_title = #{newTitle,jdbcType=VARCHAR},
+        new_type = #{newType,jdbcType=VARCHAR},
       new_content = #{newContent,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=VARCHAR},
       is_deleted = #{isDeleted,jdbcType=VARCHAR}
@@ -105,14 +115,13 @@
       <if test="isDeleted != null">
         is_deleted = #{isDeleted}
       </if>
-      <if test="newId != null">
-        and new_id = #{newId,jdbcType=INTEGER}
-      </if>
-      <if test="newTitle != null">
-        and new_title concac(#{newTitle,jdbcType=VARCHAR},'%')
-      </if>
-     <if test="newType != null">
+     <if test="newId != null">
+     and new_id = #{newId,jdbcType=INTEGER}
+     </if>     <if test="newType != null">
      and new_type = #{newType,jdbcType=VARCHAR}
+     </if>
+      <if test="newTitle != null">
+     and new_title = #{newTitle,jdbcType=VARCHAR}
      </if>
      <if  test="newContent !=null">
      and new_content = #{newContent,jdbcType=VARCHAR}
