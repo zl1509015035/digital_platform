@@ -27,9 +27,9 @@ public class CompanyController {
 
     @ApiOperation("查询企业信息")
     @PostMapping("/getCompanyInfo")
-    public PageInfo getCompanyInfo(@RequestBody CompanyReq companyReq){
+    public ApiRestResponse getCompanyInfo(@RequestBody CompanyReq companyReq){
         PageInfo pageInfo = companyService.getCompanyInfo(companyReq);
-        return pageInfo;
+        return ApiRestResponse.success(pageInfo);
     }
 
     @ApiOperation("修改企业信息")
