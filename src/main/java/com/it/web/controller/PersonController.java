@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/person")
 public class PersonController {
@@ -22,9 +24,16 @@ public class PersonController {
 
     @ApiOperation("添加人才信息")
     @PostMapping("/insertPersonInfo")
-    public ApiRestResponse insertPersonInfo(MultipartFile file, Person person){
-        personService.insertPersonInfo(file,person);
+    public ApiRestResponse insertPersonInfo(@RequestBody Person person){
+        personService.insertPersonInfo(person);
         return ApiRestResponse.success("添加人才信息成功");
+    }
+
+    @ApiOperation("添加人才头像")
+    @PostMapping("/insertPersonPicture")
+    public ApiRestResponse insertPersonPicture(MultipartFile file){
+        Map<String, Object> map = personService.insertPersonPicture(file);
+        return ApiRestResponse.success(map);
     }
 
     @ApiOperation("查询人才信息")

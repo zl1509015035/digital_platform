@@ -27,6 +27,7 @@ public enum DigitalPlatformExceptionEnum {
     NO_YOUR_ORDER(10021,"订单不属于你"),
     WRONG_ORDER_STATUS(10021,"订单不符"),
     USER_NOT_EXIST(10022,"用户不存在或密码错误"),
+    UPDATE_FAILED(10023,"用户更新失败"),
     SYSTEM_ERROR(20000,"系统异常");
     /**
      * 异常码

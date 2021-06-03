@@ -119,7 +119,7 @@
       #{createTime,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{verifyStatus,jdbcType=VARCHAR}, 
       #{isDeleted,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.it.web.model.entity.Person">
+  <insert id="insertSelective" parameterType="com.it.web.model.entity.Person" useGeneratedKeys="true" keyProperty="personId">
     insert into t_person
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="personId != null">

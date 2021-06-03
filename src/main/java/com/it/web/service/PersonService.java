@@ -6,8 +6,12 @@ import com.it.web.model.entity.Person;
 import com.it.web.model.req.PersonReq;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Map;
+
 public interface PersonService {
-    ApiRestResponse insertPersonInfo(MultipartFile file,Person person);
+    ApiRestResponse insertPersonInfo(Person person);
+
+    Map<String,Object> insertPersonPicture(MultipartFile file);
 
     PageInfo getPersons(PersonReq personReq);
 

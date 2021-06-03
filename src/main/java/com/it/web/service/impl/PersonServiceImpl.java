@@ -3,6 +3,8 @@ package com.it.web.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.it.web.common.ApiRestResponse;
+import com.it.web.exception.DigitalPlatformException;
+import com.it.web.exception.DigitalPlatformExceptionEnum;
 import com.it.web.mapper.PersonMapper;
 import com.it.web.model.entity.Person;
 import com.it.web.model.req.PersonReq;
@@ -14,7 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -26,20 +30,31 @@ public class PersonServiceImpl implements PersonService {
     private String path;
 
     @Override
-    public ApiRestResponse insertPersonInfo(MultipartFile file, Person person) {
+    public ApiRestResponse insertPersonInfo(Person person) {
+        int i = personMapper.updateByPrimaryKeySelective(person);
+        if(i<0){
+            throw new DigitalPlatformException(DigitalPlatformExceptionEnum.UPDATE_FAILED);
+        }
+        return ApiRestResponse.success();
+    }
 
+    @Override
+    public Map<String, Object> insertPersonPicture(MultipartFile file) {
         String fileName = FileUtils.getFileName(file.getOriginalFilename());
 
         boolean upload = FileUtils.upload(file, path, fileName);
+        Person person = new Person();
 
         if (true == upload) {
-//            person.setPersonPicture(path + "/" + fileName);
-            //正式
-            person.setPersonPicture("http://8.140.159.85"+path + "/" + fileName);
+            person.setPersonPicture("http://8.140.159.85" + path + "/" + fileName);
         }
 
-        personMapper.insertSelective(person);
-        return ApiRestResponse.success();
+        int i = personMapper.insertSelective(person);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("personId",person.getPersonId());
+        map.put("personPicture",person.getPersonPicture());
+        return map;
     }
 
     @Override
@@ -59,8 +74,6 @@ public class PersonServiceImpl implements PersonService {
     public void delete(Person person) {
         personMapper.deleteByPrimaryKey(person.getPersonId());
     }
-
-
 
 
 }

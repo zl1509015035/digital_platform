@@ -45,13 +45,13 @@
           and recruit_quality = #{recruitQuality}
         </if>
         <if test="recruitName != null">
-          and recruit_name = concat(#{recruitName},'%')
+          and recruit_name like concat(#{recruitName},'%')
         </if>
         <if test="recruitType != null">
           and recruit_type =#{recruitType}
         </if>
         <if test="recruitEducationRequire != null">
-          and recruit_education_require = concat(#{recruitEducationRequire},'%')
+          and recruit_education_require like concat(#{recruitEducationRequire},'%')
         </if>
         <if test="recruitWorkExperience != null">
           and recruit_work_experience = #{recruitWorkExperience}
@@ -63,7 +63,7 @@
           and recruit_require = #{recruitRequire}
         </if>
         <if test="recruitAddress != null">
-          and recruit_address = (#{recruitAddress},'%')
+          and recruit_address like concat(#{recruitAddress},'%')
         </if>
         <if test="recruitReporter != null">
           and recruit_reporter = #{recruitReporter}
