@@ -10,7 +10,7 @@
     <result column="create_time" jdbcType="VARCHAR" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    user_id, user_name, user_authority, is_deleted, create_time
+    user_id, user_name, user_password, user_authority, is_deleted, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="com.it.web.model.entity.User" resultMap="BaseResultMap">
     select 
