@@ -7,16 +7,14 @@ import com.it.web.model.req.PersonReq;
 import com.it.web.service.PersonService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
 @RestController
 @RequestMapping("/person")
+@CrossOrigin
 public class PersonController {
 
     @Autowired
@@ -24,7 +22,7 @@ public class PersonController {
 
     @ApiOperation("添加人才信息")
     @PostMapping("/insertPersonInfo")
-    public ApiRestResponse insertPersonInfo(@RequestBody Person person){
+    public ApiRestResponse insertPersonInfo( Person person){
         personService.insertPersonInfo(person);
         return ApiRestResponse.success("添加人才信息成功");
     }

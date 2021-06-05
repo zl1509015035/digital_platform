@@ -1,11 +1,11 @@
 package com.it.web.util;
 
-import java.math.BigDecimal;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Test {
 
     public static void main(String[] args) {
-        String str = "12.4";
+/*        String str = "12.4";
 
         Integer i = 10;
 
@@ -16,6 +16,9 @@ public class Test {
         BigDecimal data3 = new BigDecimal(s);
         if (data2.compareTo(data3) > 0 && data2.compareTo(data1)<0) {
             System.out.println("应用型人才");
-        }
+        }*/
+
     }
+
+
 }

@@ -2,7 +2,9 @@ package com.it.web.model.entity;
 
 import com.it.web.common.Constant;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
+@Data
 public class Person {
     private Integer personId;
 

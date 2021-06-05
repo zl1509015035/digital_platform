@@ -1,5 +1,8 @@
 package com.it.web.model.entity;
 
+import lombok.Data;
+
+@Data
 public class SendBill {
     private Integer billId;
 

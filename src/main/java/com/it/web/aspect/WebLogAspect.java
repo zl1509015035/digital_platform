@@ -37,6 +37,7 @@ public class WebLogAspect {
                 .getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
+        log.info("-------------------------start-----------------------------");
         log.info("URL : " + request.getRequestURL().toString());
         log.info("HTTP_METHOD :" + request.getMethod());
         log.info("IP : " + request.getRemoteAddr());
@@ -52,5 +53,7 @@ public class WebLogAspect {
     public void doAfterReturning(Object res) throws JsonProcessingException {
         //处理完请求，返回内容
         log.info("RESPONSE : " + new ObjectMapper().writeValueAsString(res));
+        log.info("--------------------------end----------------------------");
+
     }
 }
