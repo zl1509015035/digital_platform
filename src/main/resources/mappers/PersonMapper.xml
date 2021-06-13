@@ -46,9 +46,6 @@
       <if test="personId != null">
       and  person_id = #{personId}
       </if>
-      <if test="personPicture != null">
-        and person_picture = #{personPicture}
-      </if>
       <if test="personName != null">
         and person_name =#{personName}
       </if>
@@ -322,4 +319,11 @@
       is_deleted = #{isDeleted,jdbcType=VARCHAR}
     where person_id = #{personId,jdbcType=INTEGER}
   </update>
+
+  <select id="getPersonByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_person
+    where is_deleted = '0' and user_id = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -19,4 +19,6 @@ public interface PersonMapper {
     int updateByPrimaryKey(Person record);
 
     List<Person> getPersons(PersonReq personReq);
+
+    List<Person> getPersonByUserId(Integer userId);
 }

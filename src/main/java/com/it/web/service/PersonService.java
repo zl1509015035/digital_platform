@@ -6,6 +6,7 @@ import com.it.web.model.entity.Person;
 import com.it.web.model.req.PersonReq;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Map;
 
 public interface PersonService {
@@ -18,4 +19,6 @@ public interface PersonService {
     void update(Person person);
 
     void delete(Person person);
+
+    List<Person> getPersonByUserId(Integer userId);
 }

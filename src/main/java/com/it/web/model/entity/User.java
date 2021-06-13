@@ -1,5 +1,6 @@
 package com.it.web.model.entity;
 
+import io.swagger.models.auth.In;
 import lombok.Data;
 
 @Data
@@ -15,6 +16,8 @@ public class User {
     private String isDeleted;
 
     private String createTime;
+
+    private Integer resume;
 
     public Integer getUserId() {
         return userId;

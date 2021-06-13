@@ -2,8 +2,10 @@ package com.it.web.controller;
 
 import com.it.web.common.ApiRestResponse;
 import com.it.web.exception.DigitalPlatformExceptionEnum;
+import com.it.web.model.entity.Person;
 import com.it.web.model.entity.User;
 import com.it.web.model.req.UserGisterReq;
+import com.it.web.service.PersonService;
 import com.it.web.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    PersonService personService;
 
     @ApiOperation("注册用户信息")
     @PostMapping("/register")
@@ -33,6 +40,13 @@ public class UserController {
         user.setUserName(req.getUserName());
         user.setUserPassword(req.getUserPassword());
         User userInfo = userService.getUserInfo(user);
+
+        List<Person> personList = personService.getPersonByUserId(userInfo.getUserId());
+        if(null==personList){
+            userInfo.setResume(0);
+        }else{
+            userInfo.setResume(1);
+        }
         if(null == userInfo){
             return ApiRestResponse.error(DigitalPlatformExceptionEnum.USER_NOT_EXIST);
         }

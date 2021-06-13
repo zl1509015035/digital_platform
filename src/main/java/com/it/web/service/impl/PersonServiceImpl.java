@@ -75,5 +75,11 @@ public class PersonServiceImpl implements PersonService {
         personMapper.deleteByPrimaryKey(person.getPersonId());
     }
 
+    @Override
+    public List<Person> getPersonByUserId(Integer userId){
+        List<Person> personList = personMapper.getPersonByUserId(userId);
+        return personList;
+    }
+
 
 }

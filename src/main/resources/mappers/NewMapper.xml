@@ -117,8 +117,9 @@
       </if>
      <if test="newId != null">
      and new_id = #{newId,jdbcType=INTEGER}
-     </if>     <if test="newType != null">
-     and new_type = #{newType,jdbcType=VARCHAR}
+     </if>
+      <if test="newType != null">
+     and new_type like concat(#{newType,jdbcType=VARCHAR},'%')
      </if>
       <if test="newTitle != null">
      and new_title = #{newTitle,jdbcType=VARCHAR}

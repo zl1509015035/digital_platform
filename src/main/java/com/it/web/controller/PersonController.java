@@ -22,7 +22,7 @@ public class PersonController {
 
     @ApiOperation("添加人才信息")
     @PostMapping("/insertPersonInfo")
-    public ApiRestResponse insertPersonInfo( Person person){
+    public ApiRestResponse insertPersonInfo(Person person){
         personService.insertPersonInfo(person);
         return ApiRestResponse.success("添加人才信息成功");
     }
