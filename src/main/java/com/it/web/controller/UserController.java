@@ -9,10 +9,7 @@ import com.it.web.service.PersonService;
 import com.it.web.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -67,5 +64,14 @@ public class UserController {
         return ApiRestResponse.success("删除成功");
     }
 
+    @ApiOperation("测试登录")
+    @PostMapping("/testLogin")
+    public ApiRestResponse testLogin(@RequestParam String name,String password){
+        User user = new User();
+        user.setUserName(name);
+        user.setUserPassword(password);
+        return ApiRestResponse.success(user);
+
+    }
 
 }

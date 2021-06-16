@@ -3,6 +3,7 @@ package com.it.web.controller;
 import com.github.pagehelper.PageInfo;
 import com.it.web.common.ApiRestResponse;
 import com.it.web.model.entity.Person;
+import com.it.web.model.entity.Test;
 import com.it.web.model.req.PersonReq;
 import com.it.web.service.PersonService;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,7 +26,7 @@ public class PersonController {
 
     @ApiOperation("添加人才信息")
     @PostMapping("/insertPersonInfo")
-    public ApiRestResponse insertPersonInfo(Person person){
+    public ApiRestResponse insertPersonInfo( Person person){
         personService.insertPersonInfo(person);
         return ApiRestResponse.success("添加人才信息成功");
     }
@@ -54,4 +58,21 @@ public class PersonController {
         personService.delete(person);
         return ApiRestResponse.success("删除成功");
     }
+
+
+    @ApiOperation("测试驼峰")
+    @PostMapping("/test")
+    public ApiRestResponse test() {
+        List<Test> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Test test = new Test();
+            test.setCREATE_TIME(new Date().toString());
+            test.setTEST_NUMBER(i);
+            list.add(test);
+        }
+
+        return ApiRestResponse.success(list);
+
+    }
+
 }
