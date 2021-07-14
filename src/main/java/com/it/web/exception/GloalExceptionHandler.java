@@ -1,8 +1,10 @@
 package com.it.web.exception;
 
 import com.it.web.common.ApiRestResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.ConstraintViolationException;
+import javax.xml.bind.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +22,7 @@ import java.util.List;
  */
 //拦截异常
 @ControllerAdvice
+@Slf4j
 public class GloalExceptionHandler {
 
     private final Logger logger = LoggerFactory.getLogger(GloalExceptionHandler.class);
@@ -60,6 +65,41 @@ public class GloalExceptionHandler {
         }
         return ApiRestResponse.error(DigitalPlatformExceptionEnum.REQUEST_PARAM_ERROR.getCode(), list.toString());
     }
+
+    /**
+     * 方法参数校验
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(BindException.class)
+    public ApiRestResponse handleBindException(BindException e) {
+        log.error(e.getMessage(), e);
+        return ApiRestResponse.error(DigitalPlatformExceptionEnum.REQUEST_PARAM_ERROR.getCode(), e.getBindingResult().getFieldError().getDefaultMessage());
+    }
+
+    /**
+     * ValidationException
+     *
+     * <p>对应@RequestBody传参方式
+     */
+    @ExceptionHandler(ValidationException.class)
+    public ApiRestResponse handleValidationException(ValidationException e) {
+        log.error(e.getMessage(), e);
+        return ApiRestResponse.error(DigitalPlatformExceptionEnum.REQUEST_PARAM_ERROR.getCode(), e.getCause().getMessage());
+    }
+
+    /**
+     * ConstraintViolationException
+     *
+     * <p>对应@RequestBody传参方式
+     */
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ApiRestResponse handleConstraintViolationException(ConstraintViolationException e) {
+        log.error(e.getMessage(), e);
+        return ApiRestResponse.error(DigitalPlatformExceptionEnum.REQUEST_PARAM_ERROR.getCode(), e.getMessage());
+    }
+
 
 
 }
